@@ -1,0 +1,12 @@
+<navigation page="page" user="user" logout="logout"></navigation>
+<div class="jumbotron">
+    <div class="container">
+        <div class="page-header">
+            <div class="row" style="margin-bottom: 20px;" align="center">
+                <a class="back-btn" ng-click="goBack()"><i class="fa fa-chevron-circle-left fa-4x"> </i></a>
+                <h1>Course Schedules</h1>
+            </div>
+            <schedule-snippet schedule="schedule" select="select" ng-repeat="(key, schedule) in schedules"></schedule-snippet>
+        </div>
+    </div>
+</div>

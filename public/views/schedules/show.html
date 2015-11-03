@@ -1,0 +1,47 @@
+<navigation page="page" user="user" logout="logout"></navigation>
+<div class="jumbotron">
+    <div class="container">
+        <div class="page-header">
+            <div class="row" style="margin-bottom: 20px;" align="center">
+                <a class="back-btn" ng-click="goBack()"><i class="fa fa-chevron-circle-left fa-4x"> </i></a>
+                <h1>Schedules Detail</h1>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" align="right">
+                    <div class="row detail-attribute">
+                        <h4><small>Name:</small></h4>
+                    </div>
+                    <div class="row detail-attribute">
+                        <h4><small>Schedule ID:</small></h4>
+                    </div>
+                    <div class="row detail-attribute">
+                        <h4><small>Department:</small></h4>
+                    </div>
+                    <div class="row detail-attribute">
+                        <h4><small>Major:</small></h4>
+                    </div>
+                    <div class="row detail-attribute">
+                        <h4><small>Phone:</small></h4>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                    <div class="row detail-attribute">
+                        <h4><small>[[ schedule.f_name + ' ' + schedule.l_name ]]</small></h4>
+                    </div>
+                    <div class="row detail-attribute">
+                        <h4><small>[[ schedule.schedule_id ]]</small></h4>
+                    </div>
+                    <div class="row detail-attribute">
+                        <h4><small>[[ schedule.department ]]</small></h4>
+                    </div>
+                    <div class="row detail-attribute">
+                        <h4><small>[[ schedule.major ]]</small></h4>
+                    </div>
+                    <div class="row detail-attribute">
+                        <h4><small>[[ schedule.phone ]]</small></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+<navigation page="page" user="user" logout="logout"></navigation>
+<div class="jumbotron">
+    <div class="container">
+        <div class="page-header">
+            <div class="row" style="margin-bottom: 20px;" align="center">
+                <a class="back-btn" ng-click="goBack()"><i class="fa fa-chevron-circle-left fa-4x"> </i></a>
+                <h1>Course Grading</h1>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" align="right">
+                    <div class="row detail-attribute">
+                        <h4><small>GPA:</small></h4>
+                    </div>
+                    <div class="row detail-attribute">
+                        <h4><small>Student ID:</small></h4>
+                    </div>
+                    <div class="row detail-attribute">
+                        <h4><small>Section:</small></h4>
+                    </div>
+                    <div class="row detail-attribute">
+                        <h4><small>Credits:</small></h4>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                    <div class="row detail-attribute">
+                        <h4><small>[[ grade.gpa ]]</small></h4>
+                    </div>
+                    <div class="row detail-attribute">
+                        <h4><small>[[ grade.student_id ]]</small></h4>
+                    </div>
+                    <div class="row detail-attribute">
+                        <h4><small>[[ grade.section ]]</small></h4>
+                    </div>
+                    <div class="row detail-attribute">
+                        <h4><small>[[ grade.credits ]]</small></h4>
+                    </div>
+                </div>
+            </div>
+            <course-snippet course="grade.course" select="selectCourse"></course-snippet>
+            <faculty-snippet faculty="grade.faculty" select="selectFaculty"></faculty-snippet>
+            <semester-snippet semester="grade.semester" select="selectSemester"></semester-snippet>
+        </div>
+    </div>
+</div>

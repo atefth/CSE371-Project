@@ -1,0 +1,79 @@
+<div class="row snippet course-detail-snippet" ng-init="detailing = true">
+    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+        <div class="btn-group-vertical btn-block btn-list">
+            <div class="row">
+                <a class="btn btn-info btn-options col-xs-4" ng-click="detailing = true; modify = null;">Details</a>
+                <a class="btn btn-primary btn-options col-xs-4" ng-click="detailing = false; modify = null;">Courses</a>
+                <a class="btn btn-success btn-options col-xs-4" ng-click="modify = true; detailing = null;">Modify</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12" align="left">
+        <div class="details-round" ng-show="detailing === true">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" align="center"><h5>Name</h5></div>
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" align="center"><h5>Building</h5></div>
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" align="center"><h5>Floor</h5></div>
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" align="center"><h5>Seats</h5></div>
+            </div>
+            <hr class="course-hr">
+            <div class="row" ng-click="select(room.id)">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" align="center"><h5><a ui-sref="room({id: room.id})">[[ room.name ]]</a></h5></div>
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" align="center"><h5><strong>[[ room.building ]]</strong></h5></div>
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" align="center"><h5><strong>[[ room.floor ]]</strong></h5></div>
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" align="center"><h5><strong>[[ room.seats ]]</strong></h5></div>
+            </div>
+            <hr class="course-hr">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <a ui-sref="course({id: course.id})" ng-repeat="(key, course) in room.courses" class="course-in-list"><small>[[ course.code ]]</small></a>
+                </div>
+            </div>
+        </div>
+        <div class="course-small" ng-show="detailing === false && room.courses.length > 0" align="left">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-6 col-xs-6">
+                    <h4><strong>Course</strong></h4>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                    <h4><strong>Code</strong></h4>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                    <h4><strong>Credits</strong></h4>
+                </div>
+            </div>
+            <course-snippet-small course="course" ng-repeat="(key, course) in room.courses" locate="locate"></course-snippet-small>
+        </div>
+        <div class="course-small" ng-show="detailing === false && room.courses.length === 0" align="left">
+            <div class="row" style="padding: 12px 30px; height: 130px;">
+                <h2><strong>No Courses Allocated</strong></h2>
+            </div>
+        </div>
+        <div class="course-modify" ng-show="modify === true" align="left">
+            <div class="form-group" id="course-search">
+                <input type="text" class="form-control" ng-model="filter" placeholder="Search for All Courses">
+            </div>
+            <div class="course-list-group" align="center">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 course-edit" id="selected-courses">
+                        <div class="row">
+                            <h6><strong ng-show="room.courses.length === 0">No</strong> Courses offered in [[ room.name ]]</h6>
+                        </div>
+                        <div class="row" align="left">
+                            <a ng-click="remove(room.id, course.id)" ng-repeat="(key, course) in room.courses | filter:filter" class="course-list"><small>[[ course.code ]]</small> <i class="fa fa-times course-remove"> </i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 course-edit" id="all-courses">
+                        <div class="row">
+                            <h6>Available Courses</h6>
+                            <h6 ng-show="items.length === 0"><strong>No Courses Found</strong></h6>
+                        </div>
+                        <div class="row" align="left">
+                            <a ng-click="add(room.id, course.id)" ng-repeat="course in items = (courses | exclude:{courses: courses, existingCourses: room.courses} | filter: filter | limitTo: 4)" class="course-list-all"><small>[[ course.code ]]</small> <i class="fa fa-plus course-add"> </i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

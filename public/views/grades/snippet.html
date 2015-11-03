@@ -1,0 +1,13 @@
+<div class="row snippet" ng-click="select(grade.id)">
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <img src="http://placehold.it/400X200" alt="placeholder" class="img-snippet">
+    </div>
+    <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12" align="left">
+        <div class="details">
+            <h5><a ui-sref="grade({id: grade.id})"><strong>[[ grade.gpa ]]</strong></a></h5>
+            <h5><strong>[[ grade.student_id ]]</strong></h5>
+            <h5><small>[[ grade.section ]]</small></h5>
+            <h5><small>[[ grade.credits ]]</small></h5>
+        </div>
+    </div>
+</div>

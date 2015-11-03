@@ -1,0 +1,33 @@
+<div class="row snippet" ng-click="select(faculty.id)">
+    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+        <img src="http://placehold.it/300X300" alt="placeholder" class="img-faculty img-snippet">
+    </div>
+    <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12" align="left">
+        <div class="details details-student">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
+                    <h5>Name</h5>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-8 col-xs-8">
+                    <h5><a ui-sref="faculty({id: faculty.id})">[[ faculty.f_name + ' ' + faculty.l_name ]]</a></h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
+                    <h5>Faculty ID</h5>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-8 col-xs-8">
+                    <h5><small>[[ faculty.student_id ]]</small></h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
+                    <h5>Department</h5>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-8 col-xs-8">
+                    <h5><small>[[ faculty.department ]]</small></h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

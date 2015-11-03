@@ -1,0 +1,77 @@
+<div class="row snippet course-detail-snippet" ng-init="detailing = true">
+    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+        <div class="btn-group-vertical btn-block btn-list">
+            <div class="row">
+                <a class="btn btn-info btn-options col-xs-4" ng-click="detailing = true; modify = null;">Details</a>
+                <a class="btn btn-primary btn-options col-xs-4" ng-click="detailing = false; modify = null;">Courses</a>
+                <a class="btn btn-success btn-options col-xs-4" ng-click="modify = true; detailing = null;">Modify</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12" align="left">
+        <div class="details-round" ng-show="detailing === true">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><h5>Hours</h5></div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><h5>Day</h5></div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><h5>Duration</h5></div>
+            </div>
+            <hr class="course-hr">
+            <div class="row" ng-click="select(interval.id)">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><h5><a ui-sref="interval({id: interval.id})">[[ interval.start ]] - [[ interval.end ]]</a></h5></div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><h5><strong>[[ interval.day ]]</strong></h5></div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><h5><strong>[[ interval.duration ]] HOURS</strong></h5></div>
+            </div>
+            <hr class="course-hr">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <a ui-sref="course({id: course.id})" ng-repeat="(key, course) in interval.courses" class="course-in-list"><small>[[ course.code ]]</small></a>
+                </div>
+            </div>
+        </div>
+        <div class="course-small" ng-show="detailing === false && interval.courses.length > 0" align="left">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-6 col-xs-6">
+                    <h4><strong>Course</strong></h4>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                    <h4><strong>Code</strong></h4>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                    <h4><strong>Credits</strong></h4>
+                </div>
+            </div>
+            <course-snippet-small course="course" ng-repeat="(key, course) in interval.courses" locate="locate"></course-snippet-small>
+        </div>
+        <div class="course-small" ng-show="detailing === false && interval.courses.length === 0" align="left">
+            <div class="row" style="padding: 12px 30px; height: 130px;">
+                <h2><strong>No Courses Offered</strong></h2>
+            </div>
+        </div>
+        <div class="course-modify" ng-show="modify === true" align="left">
+            <div class="form-group" id="course-search">
+                <input type="text" class="form-control" ng-model="filter" placeholder="Search for All Courses">
+            </div>
+            <div class="course-list-group" align="center">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 course-edit" id="selected-courses">
+                        <div class="row">
+                            <h6><strong ng-show="interval.courses.length === 0">No</strong> Courses offered between <strong>[[ interval.start + ' - ' + interval.end ]]</strong></h6>
+                        </div>
+                        <div class="row" align="left">
+                            <a ng-click="remove(interval.id, course.id)" ng-repeat="(key, course) in interval.courses | filter:filter" class="course-list"><small>[[ course.code ]]</small> <i class="fa fa-times course-remove"> </i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 course-edit" id="all-courses">
+                        <div class="row">
+                            <h6 ng-hide="items.length === 0">Available Courses</h6>
+                            <h6 style="color: #E14444;" ng-show="items.length === 0"><strong>No Courses Found</strong></h6>
+                        </div>
+                        <div class="row" align="left">
+                            <a ng-click="add(interval.id, course.id)" ng-repeat="course in items = (courses | exclude:{courses: courses, existingCourses: interval.courses} | filter: filter | limitTo: 4)" class="course-list-all"><small>[[ course.code ]]</small> <i class="fa fa-plus course-add"> </i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

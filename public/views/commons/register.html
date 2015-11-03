@@ -1,0 +1,54 @@
+<navigation page="page" user="user" logout="logout"></navigation>
+<div class="jumbotron">
+    <div class="container">
+        <div class="page-header">
+            <div class="row" style="margin-bottom: 20px;" align="center">
+                <h1>Register</h1>
+            </div>
+            <errors errors="errors" messages="messages"></errors>
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-1">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    <input ng-model="newUser.f_name" type="text" name="f_name" class="form-control" required="required" placeholder="First Name">
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    <input ng-model="newUser.l_name" type="text" name="l_name" class="form-control" required="required" placeholder="Last Name">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input ng-model="newUser.student_id" type="number" name="student_id" class="form-control" required="required" placeholder="Student Id">
+                        </div>
+                        <div class="form-group">
+                            <input ng-model="newUser.email" type="email" name="email" class="form-control" required="required" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <input ng-model="newUser.password" type="password" name="password" class="form-control" required="required" placeholder="Password">
+                        </div>
+                        <div class="form-group">
+                            <input ng-model="newUser.password_confirmation" type="password" name="password_confirmation" class="form-control" required="required" placeholder="Password Confirmation">
+                        </div>
+                        <div class="form-group">
+                            <input ng-model="newUser.semester" type="text" name="semester" class="form-control" required="required" placeholder="Semester">
+                        </div>
+                        <div class="form-group">
+                            <input ng-model="newUser.department" type="text" name="department" class="form-control" required="required" placeholder="Department">
+                        </div>
+                        <div class="form-group">
+                            <input ng-model="newUser.major" type="text" name="major" class="form-control" required="required" placeholder="Major">
+                        </div>
+                        <div class="form-group">
+                            <input ng-model="newUser.phone" type="text" name="phone" class="form-control" required="required" placeholder="Phone">
+                        </div>
+                        <div class="form-group">
+                            <button ng-click="register()" class="btn btn-default btn-block">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

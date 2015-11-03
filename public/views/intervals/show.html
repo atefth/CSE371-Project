@@ -1,0 +1,35 @@
+<navigation page="page" user="user" logout="logout"></navigation>
+<div class="jumbotron">
+    <div class="container">
+        <div class="page-header">
+            <div class="row" style="margin-bottom: 20px;" align="center">
+                <a class="back-btn" ng-click="goBack()"><i class="fa fa-chevron-circle-left fa-4x"> </i></a>
+                <h1>Interval Detail</h1>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" align="right">
+                    <div class="row detail-attribute">
+                        <h4><small>Period:</small></h4>
+                    </div>
+                    <div class="row detail-attribute">
+                        <h4><small>Day:</small></h4>
+                    </div>
+                    <div class="row detail-attribute">
+                        <h4><small>Duration:</small></h4>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                    <div class="row detail-attribute">
+                        <h4><small>[[ interval.start + ' - ' + interval.end ]]</small></h4>
+                    </div>
+                    <div class="row detail-attribute">
+                        <h4><small>[[ interval.day ]]</small></h4>
+                    </div>
+                    <div class="row detail-attribute">
+                        <h4><small>[[ interval.duration ]]</small></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+<navigation page="page" user="user" logout="logout"></navigation>
+<div class="jumbotron">
+    <div class="container">
+        <div class="page-header">
+            <div class="row" style="margin-bottom: 20px;" align="center">
+                <a class="back-btn" ng-click="goBack()"><i class="fa fa-chevron-circle-left fa-4x"> </i></a>
+                <h1>Class Rooms</h1>
+            </div>
+            <errors errors="errors" messages="messages"></errors>
+            <room-snippet room="room" select="select" locate="locate" remove="remove" add="add" courses="courses" exclude="exclude" ng-repeat="(key, room) in rooms"></room-snippet>
+            <div class="row">
+                <button type="button" ng-show="loaded === false" ng-click="loadMore()" class="btn btn-large btn-block btn-info">Load More</button>
+            </div>
+        </div>
+    </div>
+</div>
