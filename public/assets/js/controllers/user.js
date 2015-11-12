@@ -2,11 +2,14 @@
 
 var app = angular.module('advising');
 app
-.controller('UserCtrl', ['$scope', 'User', '$state', function ($scope, User, $state) {
+.controller('UserCtrl', ['$scope', 'User', '$state', 'Flash', function ($scope, User, $state, Flash) {
     switch($state.current.name){
         case 'students':
         $scope.page = 'students';
         if ($scope.students === undefined || $scope.students === null) {
+            $scope.offset = 0;
+            $scope.limit = 5;
+            $scope.loaded = false;
             fetchUserWithRole('student');
         };
         break;
@@ -51,9 +54,27 @@ app
             fetchSchedules();
         };
         break;
-        default:
-        $scope.page = 'profile';
+        case 'newStudent':
+        $scope.page = 'students';
+        if ($scope.newUser === undefined || $scope.newUser === null) {
+            $scope.newUser = {};
+        };
+        if ($scope.newStudent === undefined || $scope.newStudent === null) {
+            $scope.newStudent = {};
+        };
         break;
+        case 'newFaculty':
+        $scope.page = 'students';
+        if ($scope.newUser === undefined || $scope.newUser === null) {
+            $scope.newUser = {};
+        };
+        if ($scope.newFaculty === undefined || $scope.newFaculty === null) {
+            $scope.newFaculty = {};
+        };
+        break;
+        // default:
+        // $scope.page = 'profile';
+        // break;
     }
 
     $scope.select = function (id) {
@@ -66,6 +87,103 @@ app
             break;
         }
     };
+
+    $scope.addUser = function (role) {
+        var user = $scope.newUser;
+        var student = {};
+        var faculty = {};
+        var admin = {};
+        switch(role){
+            case 'student':
+            student = $scope.newStudent;
+            break;
+            case 'faculty':
+            faculty = $scope.newFaculty;
+            break;
+            case 'admin':
+            admin = $scope.newAdmin;
+            break;
+        }
+        User
+        .create(user, student, faculty, admin)
+        .success(function (response) {
+            if (response.id !== undefined && response.id !== null) {
+                var message = '<strong>Success!</strong>';
+                Flash.create('success', errors, 'success flash');
+                $state.go('student', {id: response.id});
+            }else{
+                var errors = '';
+                var data = $.map(response, function (value, index) {
+                    return [value];
+                })
+                data.forEach(function(element, index){
+                    errors = errors + '<p class="error-p"><strong>' + element + '</strong></p>';
+                });
+                Flash.create('danger', errors, 'danger flash');
+            }
+        })
+        .error(function(error) {
+            var errors = '';
+            var data = $.map(error, function (value, index) {
+                return [value];
+            })
+            data.forEach(function(element, index){
+                errors = errors + '<p class="error-p"><strong>' + element + '</strong></p>';
+            });
+            Flash.create('danger', errors, 'danger flash');
+        });
+    }
+
+    $scope.loadMore = function (role) {
+        var oldCount;
+        switch(role){
+            case 'student':
+            oldCount = $scope.students.length;
+            break;
+            case 'faculty':
+            oldCount = $scope.faculties.length;
+            break;
+            case 'admin':
+            oldCount = $scope.admins.length;
+            break;
+        }
+        var filters = {role: role};
+        User
+        .filter($scope.offset, $scope.limit, filters)
+        .success(function (response) {
+            switch(role){
+                case 'student':
+                append(response, $scope.students, oldCount);
+                break;
+                case 'faculty':
+                append(response, $scope.faculties, oldCount);
+                break;
+                case 'admin':
+                append(response, $scope.admins, oldCount);
+                break;
+            }
+        })
+        .error(function(error) {
+            var errors = '';
+            var data = $.map(error, function (value, index) {
+                return [value];
+            })
+            data.forEach(function(element, index){
+                errors = errors + '<p class="error-p"><strong>' + element + '</strong></p>';
+            });
+            Flash.create('danger', errors, 'danger flash');
+        });
+        function append (response, array, oldCount) {
+            response.forEach(function(user, index){
+                array.push(user);
+            });
+            $scope.offset = array[array.length - 1].id;
+            var newCount = array.length;
+            if (newCount === oldCount) {
+                $scope.loaded = true;
+            };
+        }
+    }
 
     function findUser (id) {
         User
@@ -85,26 +203,46 @@ app
             }
         })
         .error(function(error) {
-            $scope.errors = error;
+            var errors = '';
+            var data = $.map(error, function (value, index) {
+                return [value];
+            })
+            data.forEach(function(element, index){
+                errors = errors + '<p class="error-p"><strong>' + element + '</strong></p>';
+            });
+            Flash.create('danger', errors, 'danger flash');
         });
     }
 
     function fetchUserWithRole (role) {
         var filters = {role: role};
         User
-        .filter(0, 10, filters)
+        .filter($scope.offset, $scope.limit, filters)
         .success(function (response) {
             switch(role){
                 case 'student':
                 $scope.students = response;
+                $scope.offset = $scope.students[$scope.students.length - 1].id;
                 break;
                 case 'faculty':
                 $scope.faculties = response;
+                $scope.offset = $scope.faculties[$scope.faculties.length - 1].id;
+                break;
+                case 'admin':
+                $scope.admins = response;
+                $scope.offset = $scope.admins[$scope.admins.length - 1].id;
                 break;
             }
         })
         .error(function(error) {
-            $scope.errors = error;
+            var errors = '';
+            var data = $.map(error, function (value, index) {
+                return [value];
+            })
+            data.forEach(function(element, index){
+                errors = errors + '<p class="error-p"><strong>' + element + '</strong></p>';
+            });
+            Flash.create('danger', errors, 'danger flash');
         });
     }
 

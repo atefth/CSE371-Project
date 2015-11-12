@@ -5,6 +5,7 @@
             <div class="row" style="margin-bottom: 20px;" align="center">
                 <a class="back-btn" ng-click="goBack()"><i class="fa fa-chevron-circle-left fa-4x"> </i></a>
                 <h1>Courses List</h1>
+                <a class="add-btn" ui-sref="newCourse"><i class="fa fa-plus-circle fa-4x"> </i></a>
             </div>
             <course-snippet course="course" ng-repeat="(key, course) in courses" select="select"></course-snippet>
             <div class="row">

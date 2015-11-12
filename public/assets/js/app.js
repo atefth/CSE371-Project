@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('advising', ['ui.router', 'ui.bootstrap']);
+var app = angular.module('advising', ['ui.router', 'ui.bootstrap', 'flash']);
 app
 .config(['$interpolateProvider', '$httpProvider', 'CSRF_TOKEN', function ($interpolateProvider, $httpProvider, CSRF_TOKEN) {
     $interpolateProvider.startSymbol('[[');
@@ -55,7 +55,6 @@ app
             };
         };
     });
-
 
     $rootScope.logout = function () {
         Auth

@@ -17,8 +17,8 @@ app
     this.update = function (id, attributes) {
         return $http.post(urlBase + '/' + id, attributes);
     }
-    this.create = function (attributes) {
-        return $http.post(urlBase, attributes);
+    this.create = function (user, student, faculty, admin) {
+        return $http.post(urlBase, {user: user, student: student, faculty: faculty, admin: admin});
     }
     this.delete = function (id) {
         return $http.delete(urlBase + '/' + id);

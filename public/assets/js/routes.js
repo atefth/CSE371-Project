@@ -26,6 +26,11 @@ app
         templateUrl: '/views/rooms/index.html',
         controller: 'RoomCtrl'
     })
+    .state('newRoom', {
+        url: '/rooms/new',
+        templateUrl: '/views/rooms/form.html',
+        controller: 'RoomCtrl'
+    })
     .state('room', {
         url: '/rooms/:id',
         templateUrl: '/views/rooms/show.html',
@@ -46,6 +51,11 @@ app
         templateUrl: '/views/intervals/index.html',
         controller: 'IntervalCtrl'
     })
+    .state('newInterval', {
+        url: '/intervals/new',
+        templateUrl: '/views/intervals/form.html',
+        controller: 'IntervalCtrl'
+    })
     .state('interval', {
         url: '/intervals/:id',
         templateUrl: '/views/intervals/show.html',
@@ -54,6 +64,11 @@ app
     .state('courses', {
         url: '/courses',
         templateUrl: '/views/courses/index.html',
+        controller: 'CourseCtrl'
+    })
+    .state('newCourse', {
+        url: '/courses/new',
+        templateUrl: '/views/courses/form.html',
         controller: 'CourseCtrl'
     })
     .state('course', {
@@ -66,6 +81,11 @@ app
         templateUrl: '/views/students/index.html',
         controller: 'UserCtrl'
     })
+    .state('newStudent', {
+        url: '/students/new',
+        templateUrl: '/views/students/form.html',
+        controller: 'UserCtrl'
+    })
     .state('student', {
         url: '/students/:id',
         templateUrl: '/views/students/show.html',
@@ -74,6 +94,11 @@ app
     .state('faculties', {
         url: '/faculties',
         templateUrl: '/views/faculties/index.html',
+        controller: 'UserCtrl'
+    })
+    .state('newFaculty', {
+        url: '/faculties/new',
+        templateUrl: '/views/faculties/form.html',
         controller: 'UserCtrl'
     })
     .state('faculty', {

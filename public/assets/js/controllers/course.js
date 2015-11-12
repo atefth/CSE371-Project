@@ -2,7 +2,7 @@
 
 var app = angular.module('advising');
 app
-.controller('CourseCtrl', ['$scope', 'Course', '$state', function ($scope, Course, $state) {
+.controller('CourseCtrl', ['$scope', 'Course', '$state', 'Flash', function ($scope, Course, $state, Flash) {
     $scope.page = 'courses';
     if ($scope.courses === undefined || $scope.courses === null) {
         $scope.offset = 0;
@@ -34,7 +34,45 @@ app
             };
         })
         .error(function(error) {
-            $scope.errors = error;
+            var errors = '';
+            var data = $.map(error, function (value, index) {
+                return [value];
+            })
+            data.forEach(function(element, index){
+                errors = errors + '<p class="error-p"><strong>' + element + '</strong></p>';
+            });
+            Flash.create('danger', errors, 'danger flash');
+        });
+    }
+
+    $scope.addCourse = function () {
+        Course
+        .create($scope.newCourse)
+        .success(function (response) {
+            if (response.id !== undefined && response.id !== null) {
+                $scope.errors = [];
+                $scope.messages = [['Course Added!']];
+                $state.go('course', {id: response.id});
+            }else{
+                var errors = '';
+                var data = $.map(response, function (value, index) {
+                    return [value];
+                })
+                data.forEach(function(element, index){
+                    errors = errors + '<p class="error-p"><strong>' + element + '</strong></p>';
+                });
+                Flash.create('danger', errors, 'danger flash');
+            }
+        })
+        .error(function(error) {
+            var errors = '';
+            var data = $.map(error, function (value, index) {
+                return [value];
+            })
+            data.forEach(function(element, index){
+                errors = errors + '<p class="error-p"><strong>' + element + '</strong></p>';
+            });
+            Flash.create('danger', errors, 'danger flash');
         });
     }
 
@@ -45,7 +83,14 @@ app
             $scope.course = response[0];
         })
         .error(function(error) {
-            $scope.errors = error;
+            var errors = '';
+            var data = $.map(error, function (value, index) {
+                return [value];
+            })
+            data.forEach(function(element, index){
+                errors = errors + '<p class="error-p"><strong>' + element + '</strong></p>';
+            });
+            Flash.create('danger', errors, 'danger flash');
         });
     }
 
@@ -57,7 +102,14 @@ app
             $scope.offset = $scope.courses[$scope.courses.length - 1].id;
         })
         .error(function(error) {
-            $scope.errors = error;
+            var errors = '';
+            var data = $.map(error, function (value, index) {
+                return [value];
+            })
+            data.forEach(function(element, index){
+                errors = errors + '<p class="error-p"><strong>' + element + '</strong></p>';
+            });
+            Flash.create('danger', errors, 'danger flash');
         });
     }
 
@@ -68,7 +120,14 @@ app
             $scope.courses = response;
         })
         .error(function(error) {
-            $scope.errors = error;
+            var errors = '';
+            var data = $.map(error, function (value, index) {
+                return [value];
+            })
+            data.forEach(function(element, index){
+                errors = errors + '<p class="error-p"><strong>' + element + '</strong></p>';
+            });
+            Flash.create('danger', errors, 'danger flash');
         });
     }
 }]);

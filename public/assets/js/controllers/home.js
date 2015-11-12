@@ -24,16 +24,29 @@ app
         .attempt($scope.credentials)
         .success(function (response) {
             if (response.id !== undefined && response.id !== null) {
-                $rootScope.user = response;
-                $scope.errors = [];
-                $scope.messages = [['Login Successful!']];
+                var message = '<strong>Success!</strong>';
+                Flash.create('success', errors, 'success flash');
                 $state.go('profile');
             }else{
-                $scope.errors = response;
+                var errors = '';
+                var data = $.map(response, function (value, index) {
+                    return [value];
+                })
+                data.forEach(function(element, index){
+                    errors = errors + '<p class="error-p"><strong>' + element + '</strong></p>';
+                });
+                Flash.create('danger', errors, 'danger flash');
             }
         })
         .error(function(error) {
-            $scope.errors = error;
+            var errors = '';
+            var data = $.map(error, function (value, index) {
+                return [value];
+            })
+            data.forEach(function(element, index){
+                errors = errors + '<p class="error-p"><strong>' + element + '</strong></p>';
+            });
+            Flash.create('danger', errors, 'danger flash');
         });
     }
 
@@ -42,15 +55,30 @@ app
         .create($scope.newUser)
         .success(function (response) {
             if (response.id !== undefined && response.id !== null) {
-                $scope.errors = [];
-                $scope.messages = [['Registration Successful!']];
+                var message = '<strong>Success!</strong>';
+                Flash.create('success', errors, 'success flash');
+                $state.go('profile');
                 $state.go('login');
             }else{
-                $scope.errors = response;
+                var errors = '';
+                var data = $.map(response, function (value, index) {
+                    return [value];
+                })
+                data.forEach(function(element, index){
+                    errors = errors + '<p class="error-p"><strong>' + element + '</strong></p>';
+                });
+                Flash.create('danger', errors, 'danger flash');
             }
         })
         .error(function(error) {
-            $scope.errors = error;
+            var errors = '';
+            var data = $.map(error, function (value, index) {
+                return [value];
+            })
+            data.forEach(function(element, index){
+                errors = errors + '<p class="error-p"><strong>' + element + '</strong></p>';
+            });
+            Flash.create('danger', errors, 'danger flash');
         });
     }
 }]);

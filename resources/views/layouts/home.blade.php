@@ -38,7 +38,7 @@ $encrypted_token = $encrypter->encrypt(csrf_token());
     <![endif]-->
 </head>
 <body>
-
+    <div class="flash-container" flash-message="3000"></div>
     <div ui-view></div>
 
     <!-- jQuery -->
@@ -56,6 +56,9 @@ $encrypted_token = $encrypter->encrypt(csrf_token());
 
     <!-- Angular UI Router -->
     <script src="vendor/angular-ui-router/release/angular-ui-router.min.js"></script>
+
+    <!-- Angular Flash -->
+    <script src="vendor/angular-flash-alert/dist/angular-flash.min.js"></script>
 
     <!-- App JS -->
     <script src="assets/js/app.js"></script>
@@ -90,7 +93,6 @@ $encrypted_token = $encrypter->encrypt(csrf_token());
     <script src="assets/js/directives/roomSnippet.js"></script>
     <script src="assets/js/directives/intervalSnippet.js"></script>
     <script src="assets/js/directives/scheduleSnippet.js"></script>
-    <script src="assets/js/directives/errors.js"></script>
 
     <!-- CSRF TOKEN -->
     <script>

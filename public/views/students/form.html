@@ -3,11 +3,14 @@
     <div class="container">
         <div class="page-header">
             <div class="row" style="margin-bottom: 20px;" align="center">
-                <h1>Register</h1>
+                <a class="back-btn" ng-click="goBack()"><i class="fa fa-chevron-circle-left fa-4x"> </i></a>
+                <h1>Student Details</h1>
             </div>
+            <errors errors="errors" messages="messages"></errors>
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-1">
+                <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">
                     <form class="form-horizontal" role="form">
+                        <legend align="center">User Details</legend>
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -19,9 +22,6 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <input ng-model="newStudent.student_id" type="number" name="student_id" class="form-control" required="required" placeholder="Student Id">
-                        </div>
-                        <div class="form-group">
                             <input ng-model="newUser.email" type="email" name="email" class="form-control" required="required" placeholder="Email">
                         </div>
                         <div class="form-group">
@@ -31,19 +31,29 @@
                             <input ng-model="newUser.password_confirmation" type="password" name="password_confirmation" class="form-control" required="required" placeholder="Password Confirmation">
                         </div>
                         <div class="form-group">
-                            <input ng-model="newStudent.semester_id" type="text" name="semester" class="form-control" required="required" placeholder="Semester">
+                            <input ng-model="newUser.semester" type="text" name="semester" class="form-control" placeholder="Semester">
                         </div>
                         <div class="form-group">
-                            <input ng-model="newStudent.department" type="text" name="department" class="form-control" required="required" placeholder="Department">
+                            <input ng-model="newUser.department" type="text" name="department" class="form-control" placeholder="Department">
+                        </div>
+                        <div class="form-group">
+                            <input ng-model="newUser.phone" type="text" name="phone" class="form-control" placeholder="Phone">
+                        </div>
+                        <legend align="center">Student Details</legend>
+                        <div class="form-group">
+                            <input ng-model="newStudent.student_id" type="number" name="student_id" class="form-control" required="required" placeholder="Student Id">
                         </div>
                         <div class="form-group">
                             <input ng-model="newStudent.major" type="text" name="major" class="form-control" required="required" placeholder="Major">
                         </div>
                         <div class="form-group">
-                            <input ng-model="newUser.phone" type="text" name="phone" class="form-control" required="required" placeholder="Phone">
+                            <input ng-model="newStudent.minor" type="text" name="minor" class="form-control" placeholder="Minor">
                         </div>
                         <div class="form-group">
-                            <button ng-click="register()" class="btn btn-default btn-block">Submit</button>
+                            <input ng-model="newStudent.cgpa" type="text" name="cgpa" class="form-control" placeholder="CGPA">
+                        </div>
+                        <div class="form-group">
+                            <button ng-click="addUser('student')" class="btn btn-default btn-block">Submit</button>
                         </div>
                     </form>
                 </div>

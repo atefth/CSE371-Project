@@ -28,7 +28,7 @@ CanResetPasswordContract
      *
      * @var array
      */
-    protected $fillable = ['f_name', 'l_name', 'email', 'password', 'semester_id', 'birthday', 'phone', 'address', 'blood_group'];
+    protected $fillable = ['id', 'f_name', 'l_name', 'email', 'password', 'semester_id', 'birthday', 'phone', 'address', 'blood_group', 'role'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -36,6 +36,21 @@ CanResetPasswordContract
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    public function student()
+    {
+        return $this->hasOne('Student', 'id');
+    }
+
+    public function faculty()
+    {
+        return $this->hasOne('Faculty', 'id');
+    }
+
+    public function admin()
+    {
+        return $this->hasOne('Admin', 'id');
+    }
 
     public function coursesOffered()
     {
